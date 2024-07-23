@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanani - Revolutionary Smart Skateboards</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+        :root {
+            --primary-color: #89CFF0;
+            --secondary-color: #FFFFFF;
+            --accent-color: #00BFFF;
+            --text-color: #333333;
+            --bg-color: #F0F8FF;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        .section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.2);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--secondary-color);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23fff" fill-opacity="0.1" width="100" height="100"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%23fff" stroke-width="0.5" stroke-opacity="0.1"/></svg>');
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+
+        .skateboard-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .skateboard {
+            position: absolute;
+            width: 150px;
+            height: 40px;
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            top: calc(50% - 20px);
+            left: -150px;
+            animation: skate 8s linear infinite;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .wheel {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            bottom: -10px;
+            animation: rotate 0.5s linear infinite;
+        }
+
+        .wheel:first-child {
+            left: 20px;
+        }
+
+        .wheel:last-child {
+            right: 20px;
+        }
+
+        .tech-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 50%, var(--secondary-color) 50%);
+            background-size: 4px 100%;
+            opacity: 0.1;
+            animation: techMove 2s linear infinite;
+        }
+
+        @keyframes skate {
+            0% {
+                left: -150px;
+                transform: rotate(0deg);
+            }
+            45% {
+                transform: rotate(0deg);
+            }
+            50% {
+                left: calc(100% + 150px);
+                transform: rotate(180deg);
+            }
+            95% {
+                transform: rotate(180deg);
+            }
+            100% {
+                left: -150px;
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes techMove {
+            from { background-position-x: 0; }
+            to { background-position-x: 4px; }
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        .feature {
+            background-color: var(--secondary-color);
+            padding: 30px;
+            border-radius: 15px;
+            width: calc(33% - 40px);
+            margin: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .tech-specs {
+            background-color: var(--secondary-color);
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .tech-specs ul {
+            text-align: left;
+            columns: 2;
+            column-gap: 40px;
+        }
+
+        .tech-specs li {
+            margin-bottom: 10px;
+        }
+
+        .team {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        .team-member {
+            width: 200px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .feature {
+                width: calc(100% - 40px);
+            }
+            .tech-specs ul {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="skateboard-container">
+            <div class="tech-lines"></div>
+            <div class="skateboard">
+                <div class="wheel"></div>
+                <div class="wheel"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1 style="color: whitesmoke;">Sanani</h1>
+            <p>Revolutionizing skateboarding with cutting-edge smart technology</p>
+            <button class="cta-button">Pre-order Now</button>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <h2>The Future of Skateboarding</h2>
+        <p>Sanani combines advanced sensor technology, machine learning, and passion for skateboarding to create the world's first truly smart skateboard. Our innovative design seamlessly integrates with your smartphone, tracking your progress, analyzing your technique, and connecting you with a global community of skaters.</p>
+    </section>
+
+    <section class="section" id="features">
+        <h2>Cutting-Edge Features</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>Smart Tracking</h3>
+                <p>Advanced multi-axis sensors capture every nuance of your movements, providing unparalleled accuracy in trick recognition and performance analysis.</p>
+            </div>
+            <div class="feature">
+                <h3>AI Coach</h3>
+                <p>Our state-of-the-art machine learning algorithm analyzes your skating patterns, offering personalized tips and training programs to accelerate your progress.</p>
+            </div>
+            <div class="feature">
+                <h3>Global Community</h3>
+                <p>Connect with skaters worldwide, share your achievements, and participate in virtual competitions through our integrated social platform.</p>
+            </div>
+            <div class="feature">
+                <h3>Real-time Feedback</h3>
+                <p>Receive instant feedback on your tricks through haptic vibrations and audio cues, helping you perfect your technique in real-time.</p>
+            </div>
+            <div class="feature">
+                <h3>Customizable Deck</h3>
+                <p>Fine-tune your board's responsiveness with our app-controlled adaptive trucks and smart grip tape.</p>
+            </div>
+            <div class="feature">
+                <h3>Safety First</h3>
+                <p>Built-in impact sensors detect falls and can automatically alert emergency contacts if needed.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="technology">
+        <h2>Our Technology</h2>
+        <p>At the heart of every Sanani skateboard lies a symphony of cutting-edge technologies working in perfect harmony:</p>
+        <div class="tech-specs">
+            <ul>
+                <li>Quad-core ARM processor</li>
+                <li>9-axis IMU (Inertial Measurement Unit)</li>
+                <li>Machine learning co-processor</li>
+                <li>Bluetooth 5.0 connectivity</li>
+                <li>GPS and GLONASS positioning</li>
+                <li>Piezoelectric sensors in trucks</li>
+                <li>Carbon fiber reinforced deck</li>
+                <li>Smart LED lighting system</li>
+                <li>1000mAh Li-Po battery (30+ hours)</li>
+                <li>Wireless charging capability</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section" id="team">
+        <h2>Meet the Innovators</h2>
+        <div class="team">
+            <div class="team-member">
+                <img src="/api/placeholder/150/150" alt="CEO placeholder">
+                <h3>Sarah Chen</h3>
+                <p>CEO & Co-founder</p>
+            </div>
+            <div class="team-member">
+                <img src="/api/placeholder/150/150" alt="CTO placeholder">
+                <h3>Alex Rodriguez</h3>
+                <p>CTO & Co-founder</p>
+            </div>
+            <div class="team-member">
+                <img src="/api/placeholder/150/150" alt="Design Lead placeholder">
+                <h3>Jamal Thompson</h3>
+                <p>Lead Designer</p>
+            </div>
+            <div class="team-member">
+                <img src="/api/placeholder/150/150" alt="ML Engineer placeholder">
+                <h3>Emma Sato</h3>
+                <p>ML Engineer</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <h2>Join the Revolution</h2>
+        <p>Be part of the skateboarding future. Sign up for updates, early access, and exclusive offers.</p>
+        <div class="contact-form">
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Message (optional)"></textarea>
+            <button class="cta-button">Stay Connected</button>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctaButtons = document.querySelectorAll('.cta-button');
+
+            ctaButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    alert('Thank you for your interest in Sanani! We\'ll be in touch soon with more information.');
+                });
+            });
+
+            const features = document.querySelectorAll('.feature');
+            features.forEach(feature => {
+                feature.addEventListener('mouseenter', () => {
+                    feature.style.backgroundColor = 'var(--bg-color)';
+                });
+                feature.addEventListener('mouseleave', () => {
+                    feature.style.backgroundColor = 'var(--secondary-color)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
